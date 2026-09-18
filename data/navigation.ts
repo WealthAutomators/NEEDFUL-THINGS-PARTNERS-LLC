@@ -2,8 +2,18 @@ import { NavLink } from "@/types";
 import { categories } from "./categories";
 
 export const navigationLinks: NavLink[] = [
-  { label: "Home", href: "/" },
   { label: "Shop", href: "/shop" },
+  {
+    label: "Collections",
+    href: "/collections",
+    children: [
+      { label: "The Needful Edit", href: "/shop?collection=needful-edit" },
+      { label: "Entertain & Gather", href: "/shop?collection=entertain" },
+      { label: "Weekend Living", href: "/shop?collection=weekend" },
+      { label: "Everyday", href: "/shop?collection=everyday" },
+      { label: "New Arrivals", href: "/new-arrivals" },
+    ],
+  },
   {
     label: "Categories",
     href: "/categories",
@@ -13,28 +23,35 @@ export const navigationLinks: NavLink[] = [
     })),
   },
   { label: "New Arrivals", href: "/new-arrivals" },
-  { label: "Best Sellers", href: "/best-sellers" },
-  { label: "About", href: "/about" },
-  { label: "Contact", href: "/contact" },
 ];
 
 export const footerLinks = {
+  shop: [
+    { label: "All Products", href: "/shop" },
+    { label: "New Arrivals", href: "/new-arrivals" },
+    { label: "Best Sellers", href: "/best-sellers" },
+    { label: "The Needful Edit", href: "/shop?collection=needful-edit" },
+  ],
+  categories: categories.map((c) => ({
+    label: c.name,
+    href: `/categories/${c.slug}`,
+  })),
   company: [
     { label: "About Us", href: "/about" },
     { label: "Contact Us", href: "/contact" },
-    { label: "Careers", href: "/contact" },
     { label: "FAQs", href: "/faq" },
+    { label: "Track Order", href: "/track-order" },
   ],
   customerCare: [
-    { label: "Track Order", href: "/track-order" },
     { label: "Returns", href: "/returns" },
     { label: "Shipping Policy", href: "/shipping" },
-    { label: "Support", href: "/contact" },
+    { label: "Refund Policy", href: "/refund" },
+    { label: "Account", href: "/profile" },
+    { label: "Wishlist", href: "/wishlist" },
   ],
   legal: [
     { label: "Privacy Policy", href: "/privacy" },
     { label: "Terms & Conditions", href: "/terms" },
-    { label: "Refund Policy", href: "/refund" },
   ],
 };
 

@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
-import { products as allProducts } from "@/data/products";
+import { products as allProducts, getProductsByCollection } from "@/data/products";
 import { sortOptions } from "@/data/homepage";
 import { Product } from "@/types";
 import { getEffectivePrice } from "@/data/products";
@@ -36,12 +36,14 @@ export function ShopContent() {
   const initialSearch = searchParams.get("search") || "";
   const initialCategory = searchParams.get("category") || "";
   const initialSale = searchParams.get("sale") === "true";
+  const initialCollection = searchParams.get("collection") || "";
+  const initialFeatured = searchParams.get("featured") === "true";
 
   const [search, setSearch] = useState(initialSearch);
   const [selectedCategories, setSelectedCategories] = useState<string[]>(
     initialCategory ? [initialCategory] : []
   );
-  const [priceRange, setPriceRange] = useState<[number, number]>([0, 150]);
+  const [priceRange, setPriceRange] = useState<[number, number]>([0, 400]);
   const [inStockOnly, setInStockOnly] = useState(false);
   const [saleOnly, setSaleOnly] = useState(initialSale);
   const [sort, setSort] = useState("featured");
@@ -50,6 +52,14 @@ export function ShopContent() {
 
   const filteredProducts = useMemo(() => {
     let result = allProducts;
+
+    if (initialFeatured) {
+      result = result.filter((p) => p.featured);
+    }
+
+    if (initialCollection) {
+      result = getProductsByCollection(initialCollection);
+    }
 
     if (search.trim()) {
       const q = search.toLowerCase();
@@ -79,7 +89,7 @@ export function ShopContent() {
     }
 
     return sortProducts(result, sort);
-  }, [search, selectedCategories, priceRange, inStockOnly, saleOnly, sort]);
+  }, [search, selectedCategories, priceRange, inStockOnly, saleOnly, sort, initialCollection, initialFeatured]);
 
   const totalPages = Math.ceil(filteredProducts.length / ITEMS_PER_PAGE);
   const paginatedProducts = filteredProducts.slice((page - 1) * ITEMS_PER_PAGE, page * ITEMS_PER_PAGE);
@@ -110,8 +120,8 @@ export function ShopContent() {
   return (
     <Container className="py-8 md:py-12">
       <div className="mb-8">
-        <h1 className="text-3xl font-semibold tracking-tight">Shop</h1>
-        <p className="mt-2 text-muted-foreground">{filteredProducts.length} products</p>
+        <h1 className="font-serif text-4xl font-medium tracking-tight md:text-5xl">Shop</h1>
+        <p className="mt-2 text-muted-foreground">{filteredProducts.length} pieces</p>
       </div>
 
       <div className="flex gap-8">
@@ -166,7 +176,7 @@ export function ShopContent() {
                 onClick={() => {
                   setSearch("");
                   setSelectedCategories([]);
-                  setPriceRange([0, 150]);
+                  setPriceRange([0, 400]);
                   setInStockOnly(false);
                   setSaleOnly(false);
                   setPage(1);

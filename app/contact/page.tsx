@@ -22,7 +22,7 @@ export default function ContactPage() {
     <>
       <PageHero
         title="Contact Us"
-        description="Have a question about your order or our products? Our team is here to help."
+        description="Questions about an order or a piece in the shop? Write us — we answer most notes within a business day."
         breadcrumbs={[{ label: "Contact Us" }]}
       />
 
@@ -46,7 +46,7 @@ export default function ContactPage() {
                 { icon: Clock, label: "Hours", value: company.hours },
               ].map(({ icon: Icon, label, value }) => (
                 <div key={label} className="flex items-start gap-4">
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary/10">
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center border border-border bg-muted">
                     <Icon className="h-4 w-4 text-primary" />
                   </div>
                   <div>

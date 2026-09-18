@@ -18,6 +18,7 @@ export interface Product {
   bestseller?: boolean;
   newArrival?: boolean;
   sku: string;
+  collections?: string[];
 }
 
 export interface Category {
@@ -43,6 +44,7 @@ export interface HeroSlide {
   ctaLink: string;
   secondaryCtaText?: string;
   secondaryCtaLink?: string;
+  alt?: string;
 }
 
 export interface Feature {

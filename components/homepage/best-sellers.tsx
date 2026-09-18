@@ -6,6 +6,7 @@ import { getBestsellerProducts, getProductsBySlugs } from "@/data/products";
 import { Container } from "@/components/ui/container";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { ProductCard } from "@/components/product/product-card";
+import { Carousel } from "@/components/ui/carousel";
 import { cn } from "@/lib/utils";
 
 export function BestSellers() {
@@ -16,12 +17,16 @@ export function BestSellers() {
   const filtered =
     activeTab === "all"
       ? curatedBestsellers
-      : bestsellers.filter((p) => p.categorySlug === activeTab).slice(0, 4);
+      : bestsellers.filter((p) => p.categorySlug === activeTab).slice(0, 8);
 
   return (
-    <section className="py-12 md:py-16">
+    <section className="py-16 md:py-20">
       <Container>
-        <SectionHeading title="Best Sellers" viewMoreLink="/best-sellers" />
+        <SectionHeading
+          kicker="Most lived with"
+          title="Best Sellers"
+          viewMoreLink="/best-sellers"
+        />
 
         <div className="mb-8 flex flex-wrap gap-2">
           {bestSellerTabs.map((tab) => (
@@ -29,10 +34,10 @@ export function BestSellers() {
               key={tab.slug}
               onClick={() => setActiveTab(tab.slug)}
               className={cn(
-                "rounded-full px-5 py-2 text-sm font-medium transition-colors",
+                "rounded-sm border px-4 py-2 text-xs font-medium uppercase tracking-[0.14em] transition-colors",
                 activeTab === tab.slug
-                  ? "bg-primary text-white"
-                  : "bg-muted text-muted-foreground hover:text-foreground"
+                  ? "border-primary bg-primary text-primary-foreground"
+                  : "border-border bg-transparent text-muted-foreground hover:border-primary hover:text-foreground"
               )}
             >
               {tab.label}
@@ -40,11 +45,11 @@ export function BestSellers() {
           ))}
         </div>
 
-        <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4 lg:gap-6">
+        <Carousel slidesToShow={4} className="px-8">
           {filtered.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}
-        </div>
+        </Carousel>
       </Container>
     </section>
   );

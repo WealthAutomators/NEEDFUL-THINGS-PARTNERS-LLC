@@ -1,5 +1,5 @@
 {
-  "name": "aam-partners",
+  "name": "needful-things-partners",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -10,7 +10,9 @@
     "images:unsplash": "node scripts/download-unsplash-images.mjs",
     "images:products": "node scripts/download-product-images.mjs",
     "images:apply": "node scripts/apply-custom-images.mjs",
-    "images:homepage": "node scripts/download-homepage-images.mjs"
+    "images:homepage": "node scripts/download-homepage-images.mjs",
+    "images:library": "node scripts/sync-library-images.mjs",
+    "images:lifestyle": "node scripts/download-lifestyle-images.mjs"
   },
   "dependencies": {
     "@radix-ui/react-accordion": "^1.2.15",

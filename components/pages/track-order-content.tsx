@@ -9,24 +9,24 @@ import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 
 const DEMO_ORDERS: Record<string, { status: string; date: string; items: string; carrier: string; tracking: string }> = {
-  "OC-100234": {
+  "NTP-100234": {
     status: "Delivered",
     date: "June 28, 2026",
-    items: "Luxury Cotton Bath Towel Set × 1",
+    items: "Haven Washed Linen Bedding Set × 1",
     carrier: "UPS",
     tracking: "1Z999AA10123456784",
   },
-  "OC-100567": {
+  "NTP-100567": {
     status: "In Transit",
     date: "July 1, 2026",
-    items: "Plush Hooded Bathrobe × 1, Coastal Stripe Beach Towel × 2",
+    items: "Everyday Ceramic Mug Pair × 1, Gathering Serving Bowl × 1",
     carrier: "USPS",
     tracking: "9400111899562345678901",
   },
-  "OC-100891": {
+  "NTP-100891": {
     status: "Processing",
     date: "July 2, 2026",
-    items: "Microfiber Cleaning Cloth Set × 2",
+    items: "Canvas Daypack × 1",
     carrier: "—",
     tracking: "—",
   },
@@ -67,7 +67,7 @@ export function TrackOrderContent() {
                 <Label htmlFor="order-number">Order Number</Label>
                 <Input
                   id="order-number"
-                  placeholder="e.g. OC-100234"
+                  placeholder="e.g. NTP-100234"
                   value={orderNumber}
                   onChange={(e) => setOrderNumber(e.target.value)}
                   required
