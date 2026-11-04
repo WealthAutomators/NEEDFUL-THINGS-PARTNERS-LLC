@@ -29,7 +29,7 @@ export function WeekendOutdoor() {
             </Button>
           </div>
         </div>
-        <div className="relative mb-10 aspect-[21/8] min-h-[240px] overflow-hidden bg-muted">
+        <div className="relative mb-10 h-[240px] w-full overflow-hidden bg-muted sm:h-auto sm:aspect-[21/8] sm:min-h-[240px]">
           <Image
             src={weekendEditorial.image}
             alt={weekendEditorial.title}

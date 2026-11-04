@@ -97,3 +97,11 @@ body {
   background: #d7ddd0;
   color: #1c1b1a;
 }
+
+/* mobile-overflow-guard */
+@layer base {
+  html,
+  body {
+    overflow-x: clip;
+  }
+}
