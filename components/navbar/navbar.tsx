@@ -94,12 +94,12 @@ export function Navbar({ onSearchOpen, onCartOpen }: NavbarProps) {
             <Button variant="ghost" size="icon" className="h-10 w-10" onClick={onSearchOpen} aria-label="Search">
               <Search className="h-[18px] w-[18px]" />
             </Button>
-            <Button variant="ghost" size="icon" asChild className="hidden h-10 w-10 sm:inline-flex">
+            <Button variant="ghost" size="icon" asChild className="hidden sm:inline-flex hidden h-10 w-10 sm:inline-flex">
               <Link href="/profile" aria-label="Account">
                 <User className="h-[18px] w-[18px]" />
               </Link>
             </Button>
-            <Button variant="ghost" size="icon" asChild className="relative h-10 w-10">
+            <Button variant="ghost" size="icon" asChild className="hidden sm:inline-flex relative h-10 w-10">
               <Link href="/wishlist" aria-label="Wishlist">
                 <Heart className="h-[18px] w-[18px]" />
                 {wishlistHydrated && wishlist.length > 0 && (
